@@ -31,7 +31,8 @@ def compute_results(args: argparse.ArgumentParser, model: torch.nn.Module, datal
     """
 
     with torch.no_grad():
-        if args.backend == "causal":
+        if args.backend == "causal" or args.backend == "dst":
+            print("here")
             return compute_causal_results(args, model, dataloader, temperatures)
         else:
             return compute_mlm_results(args, model, dataloader, temperatures)
@@ -78,14 +79,20 @@ def compute_causal_results(args, model, dataloader, temperatures):
         # Inference
         all_log_probs = {temp : [] for temp in subset_to_stats}
         for prefix in prefixes:
-            logits = model(
-                input_ids=sentence_dict[f"{prefix}_inputs"].to(DEVICE),
-                attention_mask=sentence_dict[f"{prefix}_attn_mask"].to(DEVICE),
-            )
-            if isinstance(logits, tuple):
-                logits = logits[0]  # BxTxV
+            if args.backend == "dst":
+                logits = model(
+                    input_ids=sentence_dict[f"{prefix}_inputs"].to(DEVICE),
+                    padding_mask=sentence_dict[f"{prefix}_attn_mask"].to(DEVICE).eq(0),
+                )
             else:
-                logits = logits["logits"]  # BxTxV
+                logits = model(
+                    input_ids=sentence_dict[f"{prefix}_inputs"].to(DEVICE),
+                    attention_mask=sentence_dict[f"{prefix}_attn_mask"].to(DEVICE),
+                )
+                if isinstance(logits, tuple):
+                    logits = logits[0]  # BxTxV
+                else:
+                    logits = logits["logits"]  # BxTxV
 
             for temp in subset_to_stats:
                 log_probs = F.log_softmax(logits / temp, dim=-1)

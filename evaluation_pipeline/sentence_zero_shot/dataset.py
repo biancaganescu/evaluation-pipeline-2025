@@ -7,6 +7,7 @@ from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pad_sequence
 import argparse
 from typing import Any
+from tokenizers.processors import TemplateProcessing
 
 from evaluation_pipeline.sentence_zero_shot.read_files import read_files
 
@@ -15,10 +16,18 @@ class CompletionRankingDataset(Dataset):
 
     def __init__(self, args: argparse.Namespace):
         self.backend = args.backend
-        self.tokenizer = AutoTokenizer.from_pretrained(args.model_path_or_name, padding_side="right", revision=args.revision_name)
+        if self.backend == "dst":
+            self.tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+            self.tokenizer.add_special_tokens({'pad_token': '[PAD]', 'eos_token': '[EOS]', 'bos_token': '[BOS]'})
+            self.tokenizer._tokenizer.post_processor = TemplateProcessing(
+            single=self.tokenizer.bos_token + " $A " + self.tokenizer.eos_token,
+            special_tokens=[(self.tokenizer.eos_token, self.tokenizer.eos_token_id), (self.tokenizer.bos_token, self.tokenizer.bos_token_id)],
+            )
+        else:
+            self.tokenizer = AutoTokenizer.from_pretrained(args.model_path_or_name, padding_side="right", revision=args.revision_name)
 
         if self.tokenizer.pad_token_id is None:
-            if self.backend == "causal":
+            if self.backend == "causal" or self.backend == "dst":
                 self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
             else:
                 self.tokenizer.pad_token_id = self.tokenizer.cls_token_id
@@ -172,7 +181,7 @@ class CompletionRankingDataset(Dataset):
         metadata_keys = [key for key in data_dict if key not in ["sentences", "completions", "label"]]
         metadata = {key : data_dict[key] for key in metadata_keys}
 
-        if self.backend == "causal":
+        if self.backend == "causal" or self.backend == "dst":
             processed_sentence_dict = self.process_causal_sentences(sentence_dict)
         elif self.backend == "mlm":
             processed_sentence_dict = self.process_mlm_sentences(sentence_dict)
@@ -190,7 +199,7 @@ def get_collate_fn(args: argparse.ArgumentParser, pad_idx: int):
         args (argparse.ArgumentParser): Arguments to determine model backend
         pad_idx (int): What token to use as the padding index
     """
-    if args.backend == "causal":
+    if args.backend == "causal" or args.backend == "dst":
         return get_causal_collate_fn(pad_idx)
     else:
         return get_mlm_collate_fn(pad_idx)

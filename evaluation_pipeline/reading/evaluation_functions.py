@@ -2,10 +2,16 @@ import torch
 import numpy as np
 
 
-def get_p(sentence, word, model, tokenizer):  # gets p of word (word) given context. Relies on model and tokenizer.
+def get_p(sentence, word, model, tokenizer, args):  # gets p of word (word) given context. Relies on model and tokenizer.
     inpts = tokenizer(sentence, return_tensors="pt")
+    inputs = inpts["input_ids"]
+    attn_mask = inpts["attention_mask"]
+    padding_mask = attn_mask.eq(0)
     with torch.no_grad():
-        logits = model(**inpts, return_dict=True).logits[:, -1, :]
+        if args.backend == "dst":
+            logits = model(inputs, padding_mask)[:, -1, :]
+        else:
+            logits = model(**inpts, return_dict=True).logits[:, -1, :]
     target_id = tokenizer(word, add_special_tokens=False)["input_ids"][0]
     p = torch.softmax(logits[0], dim=-1)[target_id].item()
     return p
@@ -31,10 +37,15 @@ def get_p_mlm(sentence, word, model, tokenizer, num_mask_tokens=3):  # gets p of
     return p
 
 
-def get_p2(sentence, word, model, tokenizer):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
+def get_p2(sentence, word, model, tokenizer, args):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
     inpts = tokenizer(sentence, return_tensors="pt")
+    padding_mask = inpts["attention_mask"].eq(0)
     with torch.no_grad():
-        logits = model(**inpts, return_dict=True).logits[:, -1, :]
+        if args.backend == "dst":
+            logits = model(inpts["input_ids"], padding_mask)[:, -1, :]
+        else:
+            logits = model(**inpts, return_dict=True).logits[:, -1, :]
+
     target = tokenizer(word, add_special_tokens=False)["input_ids"]  # Check whether tokenizer adds a whitespace to the beginning of input.
     if len(target) == 1:
         target_id = target[0]
@@ -48,7 +59,7 @@ def get_p2(sentence, word, model, tokenizer):  # as get_p if len(tokenizer(word)
         sentence = sentence + tokenizer.decode(target_id)
         for token in target[1:]:
             t = tokenizer.decode(token)
-            p = get_p(sentence, t, model, tokenizer)
+            p = get_p(sentence, t, model, tokenizer, args)
             out_p.append(p)
             # print(sentence, "--"+t, p)
             sentence = sentence + t

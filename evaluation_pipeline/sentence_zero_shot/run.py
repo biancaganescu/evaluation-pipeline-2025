@@ -5,7 +5,9 @@ import pathlib
 import json
 import argparse
 from _io import TextIOWrapper
-
+import sys
+sys.path.append('/home/bmg44/DualStreamTransformer')
+from model import DualStreamTransformer
 from transformers import AutoModelForCausalLM, AutoModelForMaskedLM
 import torch
 
@@ -25,11 +27,11 @@ def _parse_arguments():
                         choices=["blimp", "ewok", "entity_tracking", "wug"])
 
     parser.add_argument("--model_path_or_name", default="ltg/gpt-bert-babylm-small", type=str, help="Path to the model to evaluate.")
-    parser.add_argument("--backend", default="mlm", type=str, help="The evaluation backend strategy", choices=["mlm", "causal", "mntp"])
+    parser.add_argument("--backend", default="mlm", type=str, help="The evaluation backend strategy", choices=["mlm", "causal", "mntp", "dst"])
 
-    parser.add_argument("--min_temperature", default=1.0, type=float, help="Minimum temperature to apply to the logits.")
-    parser.add_argument("--max_temperature", default=None, type=float, help="Maximum temperature to apply to the logits. If None, onlny the minimum temperature will be considered.")
-    parser.add_argument("--temperature_interval", default=0.05, type=float, help="Step size between temperatures applied to the logits.")
+    parser.add_argument("--min_temperature", default=0.0001, type=float, help="Minimum temperature to apply to the logits.")
+    parser.add_argument("--max_temperature", default=1.0001, type=float, help="Maximum temperature to apply to the logits. If None, onlny the minimum temperature will be considered.")
+    parser.add_argument("--temperature_interval", default=0.1, type=float, help="Step size between temperatures applied to the logits.")
     parser.add_argument("--batch_size", default=64, type=int, help="Batch size for evaluation")
     parser.add_argument("--non_causal_batch_size", default=64, type=int, help="Mini-batch size to process each batch of inputs involving masked tokens")
     parser.add_argument("--save_predictions", action="store_true", help="Whether or not to save predictions.")
@@ -43,6 +45,13 @@ def get_model(args: argparse.ArgumentParser):
         model = AutoModelForMaskedLM.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
     elif args.backend == "causal":
         model = AutoModelForCausalLM.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
+    elif args.backend == "dst":
+        checkpoint = torch.load(args.model_path_or_name)
+        model_args = checkpoint.get("model_args", {})
+        if not model_args:
+                    raise ValueError("Checkpoint does not contain model_args")
+        model = DualStreamTransformer(**model_args)
+        model.load_state_dict(checkpoint["model_state_dict"])
     model = model.to(DEVICE)
     model.eval()
 
