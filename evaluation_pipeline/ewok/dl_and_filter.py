@@ -5,7 +5,7 @@ from datasets import load_dataset
 from collections import defaultdict
 
 vocab = set()
-with open("evaluation_pipeline/ewok/vocab.txt", 'r') as vocabfile:
+with open("evaluation_pipeline/ewok/vocab.txt", "r") as vocabfile:
     for line in vocabfile:
         word = line.strip()
         vocab.add(word)
@@ -31,11 +31,19 @@ for example in dataset:
     items_per_domain[domain].append(example)
 
 for domain in items_per_domain.keys():
-    with open(f"evaluation_data/full_eval/ewok_filtered/{domain}.jsonl", 'w') as outfile:
+    with open(
+        f"evaluation_data/full_eval/ewok_filtered/{domain}.jsonl", "w"
+    ) as outfile:
         for item in items_per_domain[domain]:
-            outfile.write(json.dumps(item)+"\n")
+            outfile.write(json.dumps(item) + "\n")
             swapped_item = item
             # Separate examples where context/target is flipped. Makes it easier to compute accuracies
-            swapped_item["Context1"], swapped_item["Context2"] = swapped_item["Context2"], swapped_item["Context1"]
-            swapped_item["Target1"], swapped_item["Target2"] = swapped_item["Target2"], swapped_item["Target1"]
-            outfile.write(json.dumps(swapped_item)+"\n")
+            swapped_item["Context1"], swapped_item["Context2"] = (
+                swapped_item["Context2"],
+                swapped_item["Context1"],
+            )
+            swapped_item["Target1"], swapped_item["Target2"] = (
+                swapped_item["Target2"],
+                swapped_item["Target1"],
+            )
+            outfile.write(json.dumps(swapped_item) + "\n")

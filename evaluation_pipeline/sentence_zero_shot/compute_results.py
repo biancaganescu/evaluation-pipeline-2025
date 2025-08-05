@@ -4,16 +4,23 @@
 import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
+from transformers import AutoTokenizer
+from tokenizers.processors import TemplateProcessing
 
 import math
 from collections import Counter, defaultdict
 from tqdm import tqdm
 import argparse
 
-DEVICE = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
 
-def compute_results(args: argparse.ArgumentParser, model: torch.nn.Module, dataloader: DataLoader, temperatures: list[float]):
+def compute_results(
+    args: argparse.ArgumentParser,
+    model: torch.nn.Module,
+    dataloader: DataLoader,
+    temperatures: list[float],
+):
     """This function takes as input a model, a dataloader for a given evaluation task and
     a list of candidate temperatures for temperature scaling and returns a dictionary mapping
     each temperature to a dictionary holding number of datapoints and correct outputs for each
@@ -32,22 +39,29 @@ def compute_results(args: argparse.ArgumentParser, model: torch.nn.Module, datal
 
     with torch.no_grad():
         if args.backend == "causal" or args.backend == "dst":
-            print("here")
             return compute_causal_results(args, model, dataloader, temperatures)
         else:
             return compute_mlm_results(args, model, dataloader, temperatures)
 
 
 def update_subset_to_stats(subset_to_stats, metadatas):
-    """Helper function to initialize result dictionary keys.
-    """
+    """Helper function to initialize result dictionary keys."""
     for temp, temp_dict in subset_to_stats.items():
         for key in metadatas[0]:
             if key not in temp_dict:
-                temp_dict[key] = {"total" : Counter(), "correct" : Counter()}
+                temp_dict[key] = {"total": Counter(), "correct": Counter()}
 
 
-def rank_and_evaluate(args, subset_to_stats, all_log_probs, raw_sentences, labels, metadatas, uids, predictions):
+def rank_and_evaluate(
+    args,
+    subset_to_stats,
+    all_log_probs,
+    raw_sentences,
+    labels,
+    metadatas,
+    uids,
+    predictions,
+):
     """This function takes as input model log-probabilities for each candidate sentence/completion
     and ground-truth labels, determines the model predictions and updates the result and prediction dictionaries.
     """
@@ -55,7 +69,9 @@ def rank_and_evaluate(args, subset_to_stats, all_log_probs, raw_sentences, label
         stacked_probs = torch.stack(all_log_probs[temp], dim=1)
         chosen_sentences = torch.max(stacked_probs, dim=1)[1].tolist()
 
-        for raw_sentence_dict, chosen_sentence, label, metadata, uid in zip(raw_sentences, chosen_sentences, labels, metadatas, uids):
+        for raw_sentence_dict, chosen_sentence, label, metadata, uid in zip(
+            raw_sentences, chosen_sentences, labels, metadatas, uids
+        ):
             is_correct = chosen_sentence == label
             for key, value in metadata.items():
                 temp_dict[key]["total"][value] += 1
@@ -63,27 +79,66 @@ def rank_and_evaluate(args, subset_to_stats, all_log_probs, raw_sentences, label
 
             if args.save_predictions:
                 num_id_matches = len(predictions[temp][uid])
-                predictions[temp][uid].append({"id" : f"{uid}_{num_id_matches}", "pred" : raw_sentence_dict["completions"][chosen_sentence]})
+                predictions[temp][uid].append(
+                    {
+                        "id": f"{uid}_{num_id_matches}",
+                        "pred": raw_sentence_dict["completions"][chosen_sentence],
+                    }
+                )
 
 
 def compute_causal_results(args, model, dataloader, temperatures):
-    subset_to_stats = {temp : {} for temp in temperatures}
-    predictions = {temp : defaultdict(list) for temp in subset_to_stats}
-    final_predictions = {temp : {} for temp in subset_to_stats}
+    subset_to_stats = {temp: {} for temp in temperatures}
+    predictions = {temp: defaultdict(list) for temp in subset_to_stats}
+    final_predictions = {temp: {} for temp in subset_to_stats}
 
     for raw_sentences, sentence_dict, labels, metadatas, uids in tqdm(dataloader):
         update_subset_to_stats(subset_to_stats, metadatas)
-        num_sentences = len([key for key in sentence_dict.keys() if key.endswith("attn_mask")])
-        prefixes = [f'sentence_{sentence_idx}' for sentence_idx in range(num_sentences)]
+        num_sentences = len(
+            [key for key in sentence_dict.keys() if key.endswith("attn_mask")]
+        )
+        prefixes = [f"sentence_{sentence_idx}" for sentence_idx in range(num_sentences)]
 
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        tokenizer.add_special_tokens(
+            {"pad_token": "[PAD]", "eos_token": "[EOS]", "bos_token": "[BOS]"}
+        )
+        tokenizer._tokenizer.post_processor = TemplateProcessing(
+            single=tokenizer.bos_token + " $A " + tokenizer.eos_token,
+            special_tokens=[
+                (tokenizer.eos_token, tokenizer.eos_token_id),
+                (tokenizer.bos_token, tokenizer.bos_token_id),
+            ],
+        )
         # Inference
-        all_log_probs = {temp : [] for temp in subset_to_stats}
+        all_log_probs = {temp: [] for temp in subset_to_stats}
         for prefix in prefixes:
             if args.backend == "dst":
                 logits = model(
                     input_ids=sentence_dict[f"{prefix}_inputs"].to(DEVICE),
                     padding_mask=sentence_dict[f"{prefix}_attn_mask"].to(DEVICE).eq(0),
                 )
+                pred_ids = torch.argmax(logits, dim=-1)  # shape (B, T)
+
+                # move to CPU and convert to pure Python lists
+                pred_ids_cpu = pred_ids.cpu().tolist()
+
+                # if you want raw token strings:
+                token_lists = [
+                    tokenizer.convert_ids_to_tokens(seq) for seq in pred_ids_cpu
+                ]
+
+                # or full decoded text (joins subtokens, strips special tokens):
+                text_seqs = tokenizer.batch_decode(
+                    pred_ids_cpu, skip_special_tokens=True
+                )
+
+                # now just print or log them:
+                # for i, (toks, txt) in enumerate(zip(token_lists, text_seqs)):
+                #     print(f"Example {i}:")
+                #     print("  Token IDs:   ", pred_ids_cpu[i])
+                #     print("  Subtokens:   ", toks)
+                #     print("  Decoded str: ", txt)
             else:
                 logits = model(
                     input_ids=sentence_dict[f"{prefix}_inputs"].to(DEVICE),
@@ -96,11 +151,28 @@ def compute_causal_results(args, model, dataloader, temperatures):
 
             for temp in subset_to_stats:
                 log_probs = F.log_softmax(logits / temp, dim=-1)
-                target_log_probs = torch.gather(log_probs, -1, sentence_dict[f"{prefix}_targets"].to(DEVICE).unsqueeze(-1)).squeeze(-1)
-                phrase_log_probs = torch.sum(target_log_probs * sentence_dict[f"{prefix}_phrase_mask"].to(DEVICE), dim=1)
+                target_log_probs = torch.gather(
+                    log_probs,
+                    -1,
+                    sentence_dict[f"{prefix}_targets"].to(DEVICE).unsqueeze(-1),
+                ).squeeze(-1)
+                phrase_log_probs = torch.sum(
+                    target_log_probs
+                    * sentence_dict[f"{prefix}_phrase_mask"].to(DEVICE),
+                    dim=1,
+                )
                 all_log_probs[temp].append(phrase_log_probs.cpu())
 
-        rank_and_evaluate(args, subset_to_stats, all_log_probs, raw_sentences, labels, metadatas, uids, predictions)
+        rank_and_evaluate(
+            args,
+            subset_to_stats,
+            all_log_probs,
+            raw_sentences,
+            labels,
+            metadatas,
+            uids,
+            predictions,
+        )
 
     if args.save_predictions:
         for i in temperatures:
@@ -114,36 +186,43 @@ def compute_causal_results(args, model, dataloader, temperatures):
 
 
 def compute_mlm_results(args, model, dataloader, temperatures):
-    subset_to_stats = {temp : {} for temp in temperatures}
-    predictions = {temp : defaultdict(list) for temp in subset_to_stats}
-    final_predictions = {temp : {} for temp in subset_to_stats}
+    subset_to_stats = {temp: {} for temp in temperatures}
+    predictions = {temp: defaultdict(list) for temp in subset_to_stats}
+    final_predictions = {temp: {} for temp in subset_to_stats}
 
     for raw_sentences, sentence_dict, labels, metadatas, uids in tqdm(dataloader):
         update_subset_to_stats(subset_to_stats, metadatas)
-        num_sentences = len([key for key in sentence_dict.keys() if key.endswith("attn_mask")])
-        prefixes = [f'sentence_{sentence_idx}' for sentence_idx in range(num_sentences)]
+        num_sentences = len(
+            [key for key in sentence_dict.keys() if key.endswith("attn_mask")]
+        )
+        prefixes = [f"sentence_{sentence_idx}" for sentence_idx in range(num_sentences)]
 
         # Inference
-        all_log_probs = {temp : [] for temp in subset_to_stats}
+        all_log_probs = {temp: [] for temp in subset_to_stats}
         for prefix in prefixes:
             num_examples = sentence_dict[f"{prefix}_tokens"].shape[0]
             bsz = args.non_causal_batch_size
             num_batches = math.ceil(num_examples / bsz)
 
             # Get the log-prob for each masked token
-            individual_log_probs = {temp : [] for temp in subset_to_stats}
+            individual_log_probs = {temp: [] for temp in subset_to_stats}
             for batch_idx in range(num_batches):
                 # Construct minibatch
-                tokens = sentence_dict[f"{prefix}_tokens"][batch_idx*bsz:(batch_idx+1)*bsz].to(DEVICE)
-                attn_mask = sentence_dict[f"{prefix}_attn_mask"][batch_idx*bsz:(batch_idx+1)*bsz].to(DEVICE)
-                indices = sentence_dict[f"{prefix}_indices"][batch_idx*bsz:(batch_idx+1)*bsz].to(DEVICE)
-                targets = sentence_dict[f"{prefix}_targets"][batch_idx*bsz:(batch_idx+1)*bsz].to(DEVICE)
+                tokens = sentence_dict[f"{prefix}_tokens"][
+                    batch_idx * bsz : (batch_idx + 1) * bsz
+                ].to(DEVICE)
+                attn_mask = sentence_dict[f"{prefix}_attn_mask"][
+                    batch_idx * bsz : (batch_idx + 1) * bsz
+                ].to(DEVICE)
+                indices = sentence_dict[f"{prefix}_indices"][
+                    batch_idx * bsz : (batch_idx + 1) * bsz
+                ].to(DEVICE)
+                targets = sentence_dict[f"{prefix}_targets"][
+                    batch_idx * bsz : (batch_idx + 1) * bsz
+                ].to(DEVICE)
 
                 # Do the log-probs
-                logits = model(
-                    input_ids=tokens,
-                    attention_mask=attn_mask
-                )
+                logits = model(input_ids=tokens, attention_mask=attn_mask)
                 if isinstance(logits, tuple):
                     logits = logits[0]  # BxTxV
                 else:
@@ -154,7 +233,9 @@ def compute_mlm_results(args, model, dataloader, temperatures):
 
                 for temp in subset_to_stats:
                     log_probs = F.log_softmax(masked_logits / temp, dim=-1)
-                    target_log_probs = torch.gather(log_probs, -1, targets.unsqueeze(-1)).squeeze(-1)  # B
+                    target_log_probs = torch.gather(
+                        log_probs, -1, targets.unsqueeze(-1)
+                    ).squeeze(-1)  # B
                     individual_log_probs[temp].append(target_log_probs.cpu())
 
             # Get the sums
@@ -163,14 +244,25 @@ def compute_mlm_results(args, model, dataloader, temperatures):
                 summed_log_probs = []
                 curr_idx = 0
 
-                for examples_per_batch in sentence_dict[f'{prefix}_examples_per_batch']:
+                for examples_per_batch in sentence_dict[f"{prefix}_examples_per_batch"]:
                     start_idx = curr_idx
                     end_idx = curr_idx + examples_per_batch
-                    summed_log_probs.append(torch.sum(concat_temp_log_probs[start_idx:end_idx]).item())
+                    summed_log_probs.append(
+                        torch.sum(concat_temp_log_probs[start_idx:end_idx]).item()
+                    )
                     curr_idx += examples_per_batch
                 all_log_probs[temp].append(torch.tensor(summed_log_probs))
 
-        rank_and_evaluate(args, subset_to_stats, all_log_probs, raw_sentences, labels, metadatas, uids, predictions)
+        rank_and_evaluate(
+            args,
+            subset_to_stats,
+            all_log_probs,
+            raw_sentences,
+            labels,
+            metadatas,
+            uids,
+            predictions,
+        )
 
     if args.save_predictions:
         for i in temperatures:

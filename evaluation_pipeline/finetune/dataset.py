@@ -44,11 +44,24 @@ class Dataset(torch.utils.data.Dataset):
             case "sst2":
                 load(["sentence"])
             case "wsc":
-                load(["span2_text", "span1_text"], ["text"], "Does \"{}\" refer to \"{}\" in this passage?")
+                load(
+                    ["span2_text", "span1_text"],
+                    ["text"],
+                    'Does "{}" refer to "{}" in this passage?',
+                )
             case _:
-                raise ValueError("This is not an implemented task! Please implement it!")
+                raise ValueError(
+                    "This is not an implemented task! Please implement it!"
+                )
 
-    def load_file(self, input_file: pathlib.Path, A_sentence_keys: list[str], B_sentence_keys: list[str] | None = None, A_template: str | None = None, B_template: str | None = None) -> None:
+    def load_file(
+        self,
+        input_file: pathlib.Path,
+        A_sentence_keys: list[str],
+        B_sentence_keys: list[str] | None = None,
+        A_template: str | None = None,
+        B_template: str | None = None,
+    ) -> None:
         """This function loads the data from a JSONL file into
         the Dataset class.
 
@@ -106,7 +119,12 @@ class Dataset(torch.utils.data.Dataset):
         return text, label
 
 
-def collate_function(tokenizer: PreTrainedTokenizerBase, causal: bool, max_length: int, data: list[tuple[str, str] | int | str]) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+def collate_function(
+    tokenizer: PreTrainedTokenizerBase,
+    causal: bool,
+    max_length: int,
+    data: list[tuple[str, str] | int | str],
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """This functions tokenizes, creates a attention_mask and
     collates a batch of texts/pairs of texts.
 
@@ -139,10 +157,16 @@ def collate_function(tokenizer: PreTrainedTokenizerBase, causal: bool, max_lengt
         labels.append(label)
 
     labels = torch.tensor(labels, dtype=torch.long)
-    encodings = tokenizer(texts, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
+    encodings = tokenizer(
+        texts, return_tensors="pt", padding=True, truncation=True, max_length=max_length
+    )
 
     if causal:
-        attention_mask = encodings.attention_mask.unsqueeze(1).repeat(1, encodings.attention_mask.size(-1), 1).tril(diagonal=0)
+        attention_mask = (
+            encodings.attention_mask.unsqueeze(1)
+            .repeat(1, encodings.attention_mask.size(-1), 1)
+            .tril(diagonal=0)
+        )
     else:
         attention_mask = encodings.attention_mask
 
@@ -150,7 +174,6 @@ def collate_function(tokenizer: PreTrainedTokenizerBase, causal: bool, max_lengt
 
 
 class PredictDataset(torch.utils.data.Dataset):
-
     def __init__(self, input_file: pathlib.Path, task: str) -> None:
         """This is the prediction dataset for the finetuning tasks.
         This is optimized for sequence classification and works with
@@ -184,11 +207,24 @@ class PredictDataset(torch.utils.data.Dataset):
             case "sst2":
                 load(["sentence"])
             case "wsc":
-                load(["span2_text", "span1_text"], ["text"], "Does \"{}\" refer to \"{}\" in this passage?")
+                load(
+                    ["span2_text", "span1_text"],
+                    ["text"],
+                    'Does "{}" refer to "{}" in this passage?',
+                )
             case _:
-                raise ValueError("This is not an implemented task! Please implement it!")
+                raise ValueError(
+                    "This is not an implemented task! Please implement it!"
+                )
 
-    def load_file(self, input_file: pathlib.Path, A_sentence_keys: list[str], B_sentence_keys: list[str] | None = None, A_template: str | None = None, B_template: str | None = None) -> None:
+    def load_file(
+        self,
+        input_file: pathlib.Path,
+        A_sentence_keys: list[str],
+        B_sentence_keys: list[str] | None = None,
+        A_template: str | None = None,
+        B_template: str | None = None,
+    ) -> None:
         """This function loads the data from a JSONL file into
         the Dataset class.
 
@@ -242,7 +278,12 @@ class PredictDataset(torch.utils.data.Dataset):
         return text
 
 
-def predict_collate_function(tokenizer: PreTrainedTokenizerBase, causal: bool, max_length: int, data: list[tuple[str, str] | int]) -> tuple[torch.Tensor, torch.Tensor]:
+def predict_collate_function(
+    tokenizer: PreTrainedTokenizerBase,
+    causal: bool,
+    max_length: int,
+    data: list[tuple[str, str] | int],
+) -> tuple[torch.Tensor, torch.Tensor]:
     """This functions tokenizes, creates a attention_mask, and
     collates a batch of texts/pairs of texts.
 
@@ -268,10 +309,16 @@ def predict_collate_function(tokenizer: PreTrainedTokenizerBase, causal: bool, m
     for text, label in data:
         texts.append(text)
 
-    encodings = tokenizer(texts, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
+    encodings = tokenizer(
+        texts, return_tensors="pt", padding=True, truncation=True, max_length=max_length
+    )
 
     if causal:
-        attention_mask = encodings.attention_mask.unsqueeze(1).repeat(1, encodings.attention_mask.size(-1), 1).tril(diagonal=0)
+        attention_mask = (
+            encodings.attention_mask.unsqueeze(1)
+            .repeat(1, encodings.attention_mask.size(-1), 1)
+            .tril(diagonal=0)
+        )
     else:
         attention_mask = encodings.attention_mask
 

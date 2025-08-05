@@ -55,7 +55,9 @@ def decode(line: str, file_name: pathlib.Path, task: str) -> dict[str, str]:
     elif task == "entity_tracking":
         data_dict = decode_entity_tracking(raw_dict, file_name)
     else:
-        raise NotImplementedError(f"The task {task} is not implemented! Please implement it or choose one of the implemented tasks.")
+        raise NotImplementedError(
+            f"The task {task} is not implemented! Please implement it or choose one of the implemented tasks."
+        )
 
     return data_dict
 
@@ -106,7 +108,10 @@ def decode_ewok(raw_dict: dict[str, Any]) -> dict[str, str]:
         dict[str, str]: A dictionary with values used for evaluation
     """
     pair = {
-        "sentences": [" ".join([raw_dict["Context1"], raw_dict["Target1"]]), " ".join([raw_dict["Context1"], raw_dict["Target2"]])],
+        "sentences": [
+            " ".join([raw_dict["Context1"], raw_dict["Target1"]]),
+            " ".join([raw_dict["Context1"], raw_dict["Target2"]]),
+        ],
         "completions": [raw_dict["Target1"], raw_dict["Target2"]],
         "label": 0,
         "UID": raw_dict["Domain"],
@@ -130,8 +135,8 @@ def decode_wug_adj_nominalization(raw_dict: dict[str, Any]) -> dict[str, str]:
         dict[str, str]: A dictionary with values used for evaluation
     """
     pair = {
-        "sentences": raw_dict["sentences"].split('\t'),
-        "completions": raw_dict["sentences"].split('\t'),
+        "sentences": raw_dict["sentences"].split("\t"),
+        "completions": raw_dict["sentences"].split("\t"),
         "ratio": float(raw_dict["ratio"]),
         "label": 0,
         "UID": "wug_adj_nominalization",
@@ -140,7 +145,9 @@ def decode_wug_adj_nominalization(raw_dict: dict[str, Any]) -> dict[str, str]:
     return pair
 
 
-def decode_entity_tracking(raw_dict: dict[str, Any], file_name: pathlib.Path) -> dict[str, str]:
+def decode_entity_tracking(
+    raw_dict: dict[str, Any], file_name: pathlib.Path
+) -> dict[str, str]:
     """This function takes a dictionary of a single datapoint of a Entity Tracking datafile
     and returns a dictionary of terms to be used by the evaluation.
 
@@ -151,12 +158,14 @@ def decode_entity_tracking(raw_dict: dict[str, Any], file_name: pathlib.Path) ->
     Returns:
         dict[str, str]: A dictionary with values used for evaluation
     """
-    subset = f'{file_name.stem}_{raw_dict["numops"]}_ops'
+    subset = f"{file_name.stem}_{raw_dict['numops']}_ops"
     pair = {
-        "sentences" : [raw_dict["input_prefix"] + option for option in raw_dict["options"]],
-        "completions" : [option for option in raw_dict["options"]],
-        "label" : 0,
-        "UID" : subset
+        "sentences": [
+            raw_dict["input_prefix"] + option for option in raw_dict["options"]
+        ],
+        "completions": [option for option in raw_dict["options"]],
+        "label": 0,
+        "UID": subset,
     }
 
     return pair

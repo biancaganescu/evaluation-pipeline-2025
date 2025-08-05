@@ -7,10 +7,10 @@ from transformers.configuration_utils import PretrainedConfig
 
 
 class ModelConfig(PretrainedConfig):
-
-    def __init__(self: ModelConfig, config_file: pathlib.Path | str | None = None, **kwargs):
-        """
-        """
+    def __init__(
+        self: ModelConfig, config_file: pathlib.Path | str | None = None, **kwargs
+    ):
+        """ """
         super().__init__(**kwargs)
         if config_file is None:
             self.attention_bias = True
@@ -57,5 +57,5 @@ class ModelConfig(PretrainedConfig):
         """Save this instance to a json file."""
         if isinstance(json_file_path, str):
             json_file_path: pathlib.Path = pathlib.Path(json_file_path)
-        with json_file_path.open("w", encoding='utf-8') as writer:
+        with json_file_path.open("w", encoding="utf-8") as writer:
             writer.write(self.to_json_string())

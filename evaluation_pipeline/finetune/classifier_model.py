@@ -5,14 +5,19 @@ import torch.nn as nn
 from typing import TYPE_CHECKING, Any
 from transformers import AutoModel, AutoConfig
 from transformers.modeling_outputs import ModelOutput
+import sys
+
+sys.path.append("/home/bmg44/DualStreamTransformer")
+from model import DualStreamTransformer
 
 if TYPE_CHECKING:
     from argparse import Namespace
 
 
 class ClassifierHead(nn.Module):
-
-    def __init__(self: ClassifierHead, config: Namespace, hidden_size: int | None = None) -> None:
+    def __init__(
+        self: ClassifierHead, config: Namespace, hidden_size: int | None = None
+    ) -> None:
         """This is the class for the classification head when doing
         sentence/sequence classification. This uses a config object
         to create the classification head for a certain task with a
@@ -27,14 +32,20 @@ class ClassifierHead(nn.Module):
                 the config object contains the hidden size.
         """
         super().__init__()
-        hidden_size: int = hidden_size if hidden_size is not None else config.hidden_size
+        hidden_size: int = (
+            hidden_size if hidden_size is not None else config.hidden_size
+        )
         self.nonlinearity = nn.Sequential(
-            nn.LayerNorm(hidden_size, config.classifier_layer_norm_eps, elementwise_affine=False),
+            nn.LayerNorm(
+                hidden_size, config.classifier_layer_norm_eps, elementwise_affine=False
+            ),
             nn.Linear(hidden_size, hidden_size),
             nn.GELU(),
-            nn.LayerNorm(hidden_size, config.classifier_layer_norm_eps, elementwise_affine=False),
+            nn.LayerNorm(
+                hidden_size, config.classifier_layer_norm_eps, elementwise_affine=False
+            ),
             nn.Dropout(config.classifier_dropout),
-            nn.Linear(hidden_size, config.num_labels)
+            nn.Linear(hidden_size, config.num_labels),
         )
 
     def forward(self: ClassifierHead, encodings: torch.Tensor) -> torch.Tensor:
@@ -57,7 +68,6 @@ class ClassifierHead(nn.Module):
 
 
 class ModelForSequenceClassification(nn.Module):
-
     def __init__(self: ModelForSequenceClassification, config: Namespace) -> None:
         """This is class create extends a pre-trained language model to
         classification tasks. This requires fine-tuning since the head
@@ -72,13 +82,27 @@ class ModelForSequenceClassification(nn.Module):
                 last token to the classification head.
         """
         super().__init__()
-        self.transformer: nn.Module = AutoModel.from_pretrained(config.model_name_or_path, trust_remote_code=True, revision=config.revision_name)
-        model_config = AutoConfig.from_pretrained(config.model_name_or_path, trust_remote_code=True, revision=config.revision_name)
-        hidden_size = model_config.hidden_size
+        checkpoint = torch.load(config.model_name_or_path, map_location=self._device)
+
+        model_args = checkpoint.get("model_args", {})
+        if not model_args:
+            raise ValueError("Checkpoint does not contain model_args")
+        self.transformer = DualStreamTransformer(**model_args)
+        print("Model args are ", model_args)
+
+        print("Global step is ", checkpoint["global_step"])
+        self.transformer.load_state_dict(checkpoint["model_state_dict"])
+
+        hidden_size = model_args.d_hid
+
         self.classifier: nn.Module = ClassifierHead(config, hidden_size)
         self.take_final: bool = config.take_final
 
-    def forward(self: ModelForSequenceClassification, input_data: torch.Tensor, attention_mask: torch.Tensor | None = None) -> torch.Tensor:
+    def forward(
+        self: ModelForSequenceClassification,
+        input_data: torch.Tensor,
+        attention_mask: torch.Tensor | None = None,
+    ) -> torch.Tensor:
         """This function handles the forward call of the model. It
         takes input data and mask and gives the logits for each class.
 
@@ -98,7 +122,7 @@ class ModelForSequenceClassification(nn.Module):
             - input_data: :math:`(B, S)`
             - attention_mask: :math:`(B, S)` or :math:`(B, S, S)`
         """
-        output_transformer: Any = self.transformer(input_data, attention_mask)
+        output_transformer: Any = self.transformer(input_data, attention_mask.eq(0))
         if type(output_transformer) is tuple:
             encoding: torch.Tensor = output_transformer[0]
         elif isinstance(output_transformer, ModelOutput):
@@ -115,7 +139,9 @@ class ModelForSequenceClassification(nn.Module):
             print(f"Add support for output type: {type(output_transformer)}!")
             exit()
         if self.take_final:
-            final_position: torch.Tensor = attention_mask[:, :, -1].squeeze().long().argmax(-1) - 1
+            final_position: torch.Tensor = (
+                attention_mask[:, :, -1].squeeze().long().argmax(-1) - 1
+            )
             transformer_output: torch.Tensor = encoding[final_position].diagonal().t()
         else:
             transformer_output = encoding[:, 0]

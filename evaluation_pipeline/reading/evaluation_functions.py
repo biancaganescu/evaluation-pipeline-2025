@@ -2,7 +2,9 @@ import torch
 import numpy as np
 
 
-def get_p(sentence, word, model, tokenizer, args):  # gets p of word (word) given context. Relies on model and tokenizer.
+def get_p(
+    sentence, word, model, tokenizer, args
+):  # gets p of word (word) given context. Relies on model and tokenizer.
     inpts = tokenizer(sentence, return_tensors="pt")
     inputs = inpts["input_ids"]
     attn_mask = inpts["attention_mask"]
@@ -17,9 +19,20 @@ def get_p(sentence, word, model, tokenizer, args):  # gets p of word (word) give
     return p
 
 
-def get_p_mntp(sentence, word, model, tokenizer, num_mask_tokens=3):  # gets p of word (word) given context. Relies on model and tokenizer.
-    inpts = tokenizer("".join([sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]), return_tensors="pt")
-    position_of_pred = -(num_mask_tokens + 1) if inpts.input_ids[:, -1] == tokenizer.mask_token_id else -(num_mask_tokens + 2)
+def get_p_mntp(
+    sentence, word, model, tokenizer, num_mask_tokens=3
+):  # gets p of word (word) given context. Relies on model and tokenizer.
+    inpts = tokenizer(
+        "".join(
+            [sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]
+        ),
+        return_tensors="pt",
+    )
+    position_of_pred = (
+        -(num_mask_tokens + 1)
+        if inpts.input_ids[:, -1] == tokenizer.mask_token_id
+        else -(num_mask_tokens + 2)
+    )
     with torch.no_grad():
         logits = model(**inpts, return_dict=True).logits[:, position_of_pred, :]
     target_id = tokenizer(word, add_special_tokens=False)["input_ids"][0]
@@ -27,9 +40,20 @@ def get_p_mntp(sentence, word, model, tokenizer, num_mask_tokens=3):  # gets p o
     return p
 
 
-def get_p_mlm(sentence, word, model, tokenizer, num_mask_tokens=3):  # gets p of word (word) given context. Relies on model and tokenizer.
-    inpts = tokenizer("".join([sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]), return_tensors="pt")
-    position_of_pred = -num_mask_tokens if inpts.input_ids[:, -1] == tokenizer.mask_token_id else -(num_mask_tokens + 1)
+def get_p_mlm(
+    sentence, word, model, tokenizer, num_mask_tokens=3
+):  # gets p of word (word) given context. Relies on model and tokenizer.
+    inpts = tokenizer(
+        "".join(
+            [sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]
+        ),
+        return_tensors="pt",
+    )
+    position_of_pred = (
+        -num_mask_tokens
+        if inpts.input_ids[:, -1] == tokenizer.mask_token_id
+        else -(num_mask_tokens + 1)
+    )
     with torch.no_grad():
         logits = model(**inpts, return_dict=True).logits[:, position_of_pred, :]
     target_id = tokenizer(word, add_special_tokens=False)["input_ids"][0]
@@ -37,7 +61,9 @@ def get_p_mlm(sentence, word, model, tokenizer, num_mask_tokens=3):  # gets p of
     return p
 
 
-def get_p2(sentence, word, model, tokenizer, args):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
+def get_p2(
+    sentence, word, model, tokenizer, args
+):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
     inpts = tokenizer(sentence, return_tensors="pt")
     padding_mask = inpts["attention_mask"].eq(0)
     with torch.no_grad():
@@ -46,7 +72,9 @@ def get_p2(sentence, word, model, tokenizer, args):  # as get_p if len(tokenizer
         else:
             logits = model(**inpts, return_dict=True).logits[:, -1, :]
 
-    target = tokenizer(word, add_special_tokens=False)["input_ids"]  # Check whether tokenizer adds a whitespace to the beginning of input.
+    target = tokenizer(word, add_special_tokens=False)[
+        "input_ids"
+    ]  # Check whether tokenizer adds a whitespace to the beginning of input.
     if len(target) == 1:
         target_id = target[0]
         p = torch.softmax(logits[0], dim=-1)[target_id].item()
@@ -67,12 +95,25 @@ def get_p2(sentence, word, model, tokenizer, args):  # as get_p if len(tokenizer
         return p_multi, 1
 
 
-def get_p2_mlm(sentence, word, model, tokenizer, num_mask_tokens=3):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
-    inpts = tokenizer("".join([sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]), return_tensors="pt")
-    position_of_pred = -num_mask_tokens if inpts.input_ids[:, -1] == tokenizer.mask_token_id else -(num_mask_tokens + 1)
+def get_p2_mlm(
+    sentence, word, model, tokenizer, num_mask_tokens=3
+):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
+    inpts = tokenizer(
+        "".join(
+            [sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]
+        ),
+        return_tensors="pt",
+    )
+    position_of_pred = (
+        -num_mask_tokens
+        if inpts.input_ids[:, -1] == tokenizer.mask_token_id
+        else -(num_mask_tokens + 1)
+    )
     with torch.no_grad():
         logits = model(**inpts, return_dict=True).logits[:, position_of_pred, :]
-    target = tokenizer(word, add_special_tokens=False)["input_ids"]  # Check whether tokenizer adds a whitespace to the beginning of input.
+    target = tokenizer(word, add_special_tokens=False)[
+        "input_ids"
+    ]  # Check whether tokenizer adds a whitespace to the beginning of input.
     if len(target) == 1:
         target_id = target[0]
         p = torch.softmax(logits[0], dim=-1)[target_id].item()
@@ -93,12 +134,25 @@ def get_p2_mlm(sentence, word, model, tokenizer, num_mask_tokens=3):  # as get_p
         return p_multi, 1
 
 
-def get_p2_mntp(sentence, word, model, tokenizer, num_mask_tokens=3):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
-    inpts = tokenizer("".join([sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]), return_tensors="pt")
-    position_of_pred = -(num_mask_tokens + 1) if inpts.input_ids[:, -1] == tokenizer.mask_token_id else -(num_mask_tokens + 2)
+def get_p2_mntp(
+    sentence, word, model, tokenizer, num_mask_tokens=3
+):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
+    inpts = tokenizer(
+        "".join(
+            [sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]
+        ),
+        return_tensors="pt",
+    )
+    position_of_pred = (
+        -(num_mask_tokens + 1)
+        if inpts.input_ids[:, -1] == tokenizer.mask_token_id
+        else -(num_mask_tokens + 2)
+    )
     with torch.no_grad():
         logits = model(**inpts, return_dict=True).logits[:, position_of_pred, :]
-    target = tokenizer(word, add_special_tokens=False)["input_ids"]  # Check whether tokenizer adds a whitespace to the beginning of input.
+    target = tokenizer(word, add_special_tokens=False)[
+        "input_ids"
+    ]  # Check whether tokenizer adds a whitespace to the beginning of input.
     if len(target) == 1:
         target_id = target[0]
         p = torch.softmax(logits[0], dim=-1)[target_id].item()

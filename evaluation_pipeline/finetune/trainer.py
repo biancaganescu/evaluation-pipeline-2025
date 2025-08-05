@@ -15,8 +15,7 @@ if TYPE_CHECKING:
     from torch.optim.lr_scheduler import LRScheduler
 
 
-class Trainer():
-
+class Trainer:
     def __init__(
         self: Trainer,
         model: nn.Module,
@@ -27,7 +26,7 @@ class Trainer():
         scheduler: LRScheduler | None = None,
         ema_model: nn.Module | None = None,
         valid_dataloader: DataLoader | None = None,
-        predict_dataloader: DataLoader | None = None
+        predict_dataloader: DataLoader | None = None,
     ) -> None:
         """The Trainer class handles all the fine tuning,
         evaluation, and prediction of a given task for a
@@ -102,12 +101,18 @@ class Trainer():
 
             if self.ema_model is not None:
                 with torch.no_grad():
-                    for param_q, param_k in zip(self.model.parameters(), self.ema_model.parameters()):
-                        param_k.data.mul_(self.args.ema_decay).add_((1.0 - self.args.ema_decay) * param_q.detach().data)
+                    for param_q, param_k in zip(
+                        self.model.parameters(), self.ema_model.parameters()
+                    ):
+                        param_k.data.mul_(self.args.ema_decay).add_(
+                            (1.0 - self.args.ema_decay) * param_q.detach().data
+                        )
 
             metrics = self.calculate_metrics(logits, labels, self.args.metrics)
 
-            metrics_string = ", ".join([f"{key}: {value:.4f}" for key, value in metrics.items()])
+            metrics_string = ", ".join(
+                [f"{key}: {value:.4f}" for key, value in metrics.items()]
+            )
 
             progress_bar.update()
 
@@ -130,7 +135,9 @@ class Trainer():
                 model on the validation dataset, based on
                 the metrics to evaluate on.
         """
-        assert self.valid_dataloader is not None, "No valid dataset to run evaluation on!"
+        assert self.valid_dataloader is not None, (
+            "No valid dataset to run evaluation on!"
+        )
 
         if hasattr(self, "best_model") and evaluate_best_model:
             model: nn.Module = self.best_model
@@ -165,7 +172,9 @@ class Trainer():
         progress_bar.close()
 
         if self.args.verbose:
-            metrics_string = "\n".join([f"{key}: {value}" for key, value in metrics.items()])
+            metrics_string = "\n".join(
+                [f"{key}: {value}" for key, value in metrics.items()]
+            )
             print(metrics_string)
 
         return metrics
@@ -178,10 +187,12 @@ class Trainer():
         Args:
             model(nn.Module): The model to save.
         """
-        model_to_save = model.module if hasattr(model, 'module') else model
+        model_to_save = model.module if hasattr(model, "module") else model
         torch.save(model_to_save.state_dict(), self.args.save_path / "model.pt")
 
-    def _compare_scores(self: Trainer, best: float, current: float, bigger_better: bool) -> bool:
+    def _compare_scores(
+        self: Trainer, best: float, current: float, bigger_better: bool
+    ) -> bool:
         if best is None:
             return True
         else:
@@ -192,7 +203,9 @@ class Trainer():
             return False
 
     @staticmethod
-    def calculate_metrics(logits: torch.Tensor, labels: torch.Tensor, metrics_to_calculate: list[str]) -> dict[str, float]:
+    def calculate_metrics(
+        logits: torch.Tensor, labels: torch.Tensor, metrics_to_calculate: list[str]
+    ) -> dict[str, float]:
         """This function calculates the metrics specified by
         the user. This is a static method and can be used
         without initializing a Trainer.
@@ -226,7 +239,9 @@ class Trainer():
             elif metric == "mcc":
                 metrics["mcc"] = matthews_corrcoef(labels, predictions)
             else:
-                print(f"Metric {metric} is unknown / not implemented. It will be skipped!")
+                print(
+                    f"Metric {metric} is unknown / not implemented. It will be skipped!"
+                )
 
         return metrics
 
@@ -248,7 +263,9 @@ class Trainer():
                 metrics: dict[str, float] = self.evaluate()
                 if self.args.keep_best_model:
                     score: float = metrics[self.args.metric_for_valid]
-                    if self._compare_scores(best_score, score, self.args.higher_is_better):
+                    if self._compare_scores(
+                        best_score, score, self.args.higher_is_better
+                    ):
                         if self.ema_model is not None:
                             self.best_model = copy.deepcopy(self.ema_model)
                         else:

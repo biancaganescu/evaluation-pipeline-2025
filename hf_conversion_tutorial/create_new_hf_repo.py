@@ -65,13 +65,36 @@ TODO_TEXT = """# TODO
 
 
 def _parse_arguments():
-    parser = argparse.ArgumentParser("This parser takes the location of the model weights, the tokenizer, and the location to save the new HF repository.")
+    parser = argparse.ArgumentParser(
+        "This parser takes the location of the model weights, the tokenizer, and the location to save the new HF repository."
+    )
 
     # Required Parameters
-    parser.add_argument("--model_weights_path", required=True, type=pathlib.Path, help="Path to the model weights.")
-    parser.add_argument("--tokenizer_path", required=True, type=pathlib.Path, help="Path to the tokenizer file.")
-    parser.add_argument("--save_directory", required=True, type=pathlib.Path, help="Directory in which to create the HF repository.")
-    parser.add_argument("--dummy_directory", default="dummy_model", required=True, type=pathlib.Path, help="Path to the dummy repository.")
+    parser.add_argument(
+        "--model_weights_path",
+        required=True,
+        type=pathlib.Path,
+        help="Path to the model weights.",
+    )
+    parser.add_argument(
+        "--tokenizer_path",
+        required=True,
+        type=pathlib.Path,
+        help="Path to the tokenizer file.",
+    )
+    parser.add_argument(
+        "--save_directory",
+        required=True,
+        type=pathlib.Path,
+        help="Directory in which to create the HF repository.",
+    )
+    parser.add_argument(
+        "--dummy_directory",
+        default="dummy_model",
+        required=True,
+        type=pathlib.Path,
+        help="Path to the dummy repository.",
+    )
 
     args = parser.parse_args()
 
