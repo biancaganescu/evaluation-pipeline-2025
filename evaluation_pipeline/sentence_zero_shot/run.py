@@ -6,7 +6,10 @@ import pathlib
 import json
 import argparse
 from _io import TextIOWrapper
+import sys
 
+sys.path.append("/home/bmg44/dual-stream-transformer")
+from models.model import DualStreamTransformer
 from transformers import AutoModelForCausalLM, AutoModelForMaskedLM, AutoModelForSeq2SeqLM
 import torch
 
@@ -23,7 +26,7 @@ def _parse_arguments():
     parser.add_argument("--data_path", required=True, type=pathlib.Path, help="Path to the data directory")
     parser.add_argument("--task", required=True, type=str, help="The task that is being evaluated.", choices=["blimp", "ewok", "entity_tracking", "wug_adj", "wug_past", "comps", "vqa", "winoground"])
     parser.add_argument("--model_path_or_name", required=True, type=str, help="Path to the model to evaluate.")
-    parser.add_argument("--backend", required=True, type=str, help="The evaluation backend strategy", choices=["mlm", "causal", "mntp", "enc_dec_mask", "enc_dec_prefix"])
+    parser.add_argument("--backend", required=True, type=str, help="The evaluation backend strategy", choices=["mlm", "dst", "causal", "mntp", "enc_dec_mask", "enc_dec_prefix"])
 
     parser.add_argument("--output_dir", default="results", type=pathlib.Path, help="Path to the data directory")
     parser.add_argument("--images_path", default=None, type=str, help="Path or HuggingFace repository name to the images for the task.")
@@ -50,6 +53,13 @@ def get_model(args: argparse.ArgumentParser):
         model = AutoModelForCausalLM.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
     elif args.backend in ["enc_dec_mask", "enc_dec_prefix"]:
         model = AutoModelForSeq2SeqLM.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
+    elif args.backend == "dst":
+        checkpoint = torch.load(args.model_path_or_name)
+        model_args = checkpoint.get("model_args", {})
+        if not model_args:
+            raise ValueError("Checkpoint does not contain model_args")
+        model = DualStreamTransformer(**model_args)
+        model.load_state_dict(checkpoint["model_state_dict"])
     else:
         raise f"The backend {args.backend} is not implemented, please implemented yourself or raise an issue on the GitHub!"
     model = model.to(DEVICE)

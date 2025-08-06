@@ -20,7 +20,7 @@ def parse_args():
     parser.add_argument("--output_dir", default="results", type=pathlib.Path, help="The output directory where the results will be written.")
     parser.add_argument("--data_path", required=True, type=pathlib.Path, help="Path to file containing the lambada dataset, we expect it to be in a JSONL format.")
     parser.add_argument("--model_path_or_name", required=True, type=str, help="The path/name to/of the huggingface folder/repository.")
-    parser.add_argument("--backend", required=True, type=str, help="The evaluation backend strategy.", choices=["mlm", "mntp", "causal", "enc_dec"])
+    parser.add_argument("--backend", required=True, type=str, help="The evaluation backend strategy.", choices=["mlm", "mntp", "causal", "enc_dec", "dst"])
     parser.add_argument("--number_of_mask_tokens_to_append", default=3, type=int, help="When using either mlm or mntp, the number of mask tokens to append to approximate causal generation.")
     parser.add_argument("--revision_name", default=None, type=str, help="Name of the checkpoint/version of the model to test. (If None, the main will be used)")
 
@@ -49,16 +49,36 @@ if __name__ == "__main__":
 
     if args.backend == "causal":
         model = AutoModelForCausalLM.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
+        tokenizer = AutoProcessor.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
     elif args.backend in ["mlm", "mntp"]:
         model = AutoModelForMaskedLM.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
+        tokenizer = AutoProcessor.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
     elif args.backend == "enc_dec":
         model = AutoModelForSeq2SeqLM.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
+        tokenizer = AutoProcessor.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
+    elif args.backend == "dst":
+        checkpoint = torch.load(args.model_path_or_name)
+        model_args = checkpoint.get("model_args", {})
+        if not model_args:
+            raise ValueError("Checkpoint does not contain model_args")
+        model = DualStreamTransformer(**model_args)
+        model.load_state_dict(checkpoint["model_state_dict"])
+        tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+        tokenizer.add_special_tokens(
+                    {"pad_token": "[PAD]", "eos_token": "[EOS]", "bos_token": "[BOS]"}
+                )
+        tokenizer._tokenizer.post_processor = TemplateProcessing(
+                    single=tokenizer.bos_token + " $A " + tokenizer.eos_token,
+                    special_tokens=[
+                        (tokenizer.eos_token, tokenizer.eos_token_id),
+                        (tokenizer.bos_token, tokenizer.bos_token_id),
+                    ],
+                )
 
     model.to(DEVICE)
     model.eval()
-    tokenizer = AutoProcessor.from_pretrained(args.model_path_or_name, trust_remote_code=True, revision=args.revision_name)
 
-    if args.backend == "causal":
+    if args.backend == "causal" or args.backend == "dst":
         p2_function = get_p2
     elif args.backend == "mlm":
         p2_function = partial(get_p2_mlm, num_mask_tokens=args.number_of_mask_tokens_to_append)

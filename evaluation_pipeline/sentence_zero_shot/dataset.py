@@ -2,13 +2,14 @@
 # -------------------
 from __future__ import annotations
 
-from transformers import AutoProcessor
+from transformers import AutoProcessor, AutoTokenizer
 import torch
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pad_sequence
 import argparse
 import json
 from typing import TYPE_CHECKING
+from tokenizers.processors import TemplateProcessing
 
 from evaluation_pipeline.sentence_zero_shot.read_files import read_files
 
@@ -21,12 +22,28 @@ class CompletionRankingDataset(Dataset):
 
     def __init__(self: CompletionRankingDataset, args: argparse.Namespace):
         self.backend: str = args.backend
-        self.processor: ProcessorMixin = AutoProcessor.from_pretrained(args.model_path_or_name, padding_side="right", revision=args.revision_name, trust_remote_code=True)
-        self.tokenizer = self.processor.tokenizer if hasattr(self.processor, "tokenizer") else self.processor
+        if self.backend != "dst":
+            self.processor: ProcessorMixin = AutoProcessor.from_pretrained(args.model_path_or_name, padding_side="right", revision=args.revision_name, trust_remote_code=True)
+            self.tokenizer = self.processor.tokenizer if hasattr(self.processor, "tokenizer") else self.processor
+        else:
+            self.tokenizer = AutoTokenizer.from_pretrained("openai-community/gpt2")
+            self.tokenizer.add_special_tokens(
+                    {"pad_token": "[PAD]", "eos_token": "[EOS]", "bos_token": "[BOS]"}
+                )
+            self.tokenizer._tokenizer.post_processor = TemplateProcessing(
+                    single=self.tokenizer.bos_token + " $A " + self.tokenizer.eos_token,
+                    special_tokens=[
+                        (self.tokenizer.eos_token, self.tokenizer.eos_token_id),
+                        (self.tokenizer.bos_token, self.tokenizer.bos_token_id),
+                    ],
+                )
+        
 
         if self.tokenizer.pad_token_id is None:
             if self.backend == "causal":
                 self.tokenizer.pad_token_id: int = self.tokenizer.eos_token_id
+            # elif self.backend == "dst":
+            #     self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
             else:
                 self.tokenizer.pad_token_id = self.tokenizer.cls_token_id
 
@@ -96,6 +113,62 @@ class CompletionRankingDataset(Dataset):
             processed_sentence_dict[f'sentence_{sentence_idx}_image'] = embed_image
 
         return processed_sentence_dict
+
+    def process_dst_sentences(self: CompletionRankingDataset, sentence_dict: dict[str, list[str] | list[None]], image: Image | None):
+        """Helper function for processing the dictionary associated with an individual
+        datapoint for inference with a causal LM.
+
+        Args:
+            sentence_dict (dict[str, Any]): The dictionary associated with the datapoint
+        """
+        sentences = sentence_dict["sentences"]
+        completions = sentence_dict["completions"]
+
+        processed_sentence_dict = {}
+        for sentence_idx, (sentence, completion) in enumerate(zip(sentences, completions)):
+            # Basic outputs
+            if image is None:
+                tokenizer_output = self.tokenizer(sentence, return_offsets_mapping=True)
+                sentence_tokens = tokenizer_output["input_ids"]
+            else:
+                if self.image_token is not None:
+                    image_sentence = self.image_template.format(image_token=self.image_token, text=sentence)
+                else:
+                    image_sentence = sentence
+                tokenizer_output = self.processor(text=image_sentence, images=image, return_offsets_mapping=True)
+                sentence_tokens = self.processor(text=sentence, return_offsets_mapping=True)["input_ids"]
+
+            tokens = tokenizer_output["input_ids"]
+            attention_mask = tokenizer_output["attention_mask"]
+            offset_mapping = tokenizer_output['offset_mapping']
+            embed_image = torch.FloatTensor(tokenizer_output["pixel_values"]) if image is not None else None
+            if len(tokens) == 1 and len(sentence) != 0:
+                if sentence_tokens:
+                    sentence_tokens = sentence_tokens[0]
+                tokens = tokens[0]
+                attention_mask = attention_mask[0]
+                offset_mapping = offset_mapping[0]
+
+            # Phrase mask (to determine the exact tokens associated with the completion/suffix)
+            start_idx = len(tokens) - len(sentence_tokens)
+            start_char_idx = len(sentence) - len(completion) + offset_mapping[start_idx][0]
+            phrase_indices = []
+            for i, (start, end) in enumerate(offset_mapping[start_idx:]):
+                # If token overlaps with our phrase's character span
+                if end > start_char_idx:
+                    phrase_indices.append(i+start_idx)
+
+            phrase_mask = [0 for _ in range(len(tokens))]
+            for token_idx in phrase_indices:
+                phrase_mask[token_idx] = 1
+
+            processed_sentence_dict[f'sentence_{sentence_idx}_tokens'] = torch.LongTensor(tokens)
+            processed_sentence_dict[f'sentence_{sentence_idx}_attn_mask'] = torch.LongTensor(attention_mask)
+            processed_sentence_dict[f'sentence_{sentence_idx}_phrase_mask'] = torch.LongTensor(phrase_mask)
+            processed_sentence_dict[f'sentence_{sentence_idx}_image'] = embed_image
+
+        return processed_sentence_dict
+
 
     def process_mlm_sentences(self, sentence_dict: dict[str, list[str] | list[None]], image: Image | None):
         """Helper function for processing the dictionary associated with an individual
@@ -357,6 +430,8 @@ class CompletionRankingDataset(Dataset):
 
         if self.backend == "causal":
             processed_sentence_dict: dict[str, torch.Tensor | None] = self.process_causal_sentences(sentence_dict, image)
+        elif self.backend == "dst":
+            processed_sentence_dict: dict[str, torch.Tensor | None] = self.process_dst_sentences(sentence_dict, image)
         elif self.backend == "mlm":
             processed_sentence_dict = self.process_mlm_sentences(sentence_dict, image)
         elif self.backend == "mntp":
@@ -398,7 +473,7 @@ def get_collate_fn(args: argparse.ArgumentParser, pad_idx: int):
         pad_idx (int): What token to use as the padding index
     """
 
-    if args.backend == "causal":
+    if args.backend == "causal" or args.backend == "dst":
         return get_causal_collate_fn(pad_idx)
     elif args.backend in ["mlm", "mntp"]:
         return get_mlm_collate_fn(pad_idx)
