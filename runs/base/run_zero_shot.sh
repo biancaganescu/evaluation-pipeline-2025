@@ -14,4 +14,5 @@ for checkpoint in "${CHECKPOINTS[@]}"; do
     python -m evaluation_pipeline.sentence_zero_shot.run --model_path_or_name ${MODEL_PATH}checkpoint_${checkpoint}.pt --backend dst --task wug_adj --data_path "${EVAL_DIR}/wug_adj_nominalization" --save_predictions > runs/base/wug_adj_nominalization_${checkpoint}.txt
     python -m evaluation_pipeline.sentence_zero_shot.run --model_path_or_name ${MODEL_PATH}checkpoint_${checkpoint}.pt --backend dst --task wug_past --data_path "${EVAL_DIR}/wug_past_tense" --save_predictions > runs/base/wug_past_tense_${checkpoint}.txt
     python -m evaluation_pipeline.sentence_zero_shot.run --model_path_or_name ${MODEL_PATH}checkpoint_${checkpoint}.pt --backend dst --task comps --data_path "${EVAL_DIR}/comps" --save_predictions > runs/base/comps_${checkpoint}.txt
+    python -m evaluation_pipeline.reading.run --model_path_or_name ${MODEL_PATH}checkpoint_${checkpoint}.pt --backend dst --data_path "${EVAL_DIR}/reading/reading_data.csv" > runs/base/reading_${checkpoint}.txt
 done

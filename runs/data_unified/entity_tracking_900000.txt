@@ -1,0 +1,1330 @@
+Truncating sentence_0 from 130 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 130 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 130 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 130 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 130 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 143 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 143 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 143 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 143 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 143 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 170 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 170 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 170 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 170 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 170 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 166 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 166 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 166 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 166 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 166 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 238 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_0
+Truncating sentence_1 from 238 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_1
+Truncating sentence_2 from 238 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_2
+Truncating sentence_3 from 238 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_3
+Truncating sentence_4 from 238 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_4
+Truncating sentence_0 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 138 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 138 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 138 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 138 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 138 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 147 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 147 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 147 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 147 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 147 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 154 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 154 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 154 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 154 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 154 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 164 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 164 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 164 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 164 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 164 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 203 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 206 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 206 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 206 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 206 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 206 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_0
+Truncating sentence_1 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_1
+Truncating sentence_2 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_2
+Truncating sentence_3 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_3
+Truncating sentence_4 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_4
+Truncating sentence_0 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 184 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 184 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 184 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 184 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 184 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 191 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 191 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 191 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 191 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 191 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 198 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_0
+Truncating sentence_1 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_1
+Truncating sentence_2 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_2
+Truncating sentence_3 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_3
+Truncating sentence_4 from 229 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_4
+Truncating sentence_0 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 213 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 238 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 238 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 238 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 238 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 238 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 228 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 229 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 229 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 229 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 229 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 203 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 203 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 203 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 203 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 203 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 225 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 225 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 225 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 225 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 225 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 227 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 227 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 227 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 227 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 227 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 207 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 216 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 216 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 216 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 216 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 216 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 208 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 208 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 208 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 208 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 208 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 224 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 234 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 234 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 234 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 234 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 234 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 217 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 192 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_0
+Truncating sentence_1 from 192 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_1
+Truncating sentence_2 from 192 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_2
+Truncating sentence_3 from 192 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_3
+Truncating sentence_4 from 192 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_4
+Truncating sentence_0 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 160 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 161 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 161 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 161 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 161 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 199 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_0
+Truncating sentence_1 from 199 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_1
+Truncating sentence_2 from 199 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_2
+Truncating sentence_3 from 199 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_3
+Truncating sentence_4 from 199 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_4
+Truncating sentence_0 from 133 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 134 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 149 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 149 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 149 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 149 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 149 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 157 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 196 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 204 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 168 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 153 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 153 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 153 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 153 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 153 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 201 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_0
+Truncating sentence_1 from 201 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_1
+Truncating sentence_2 from 201 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_2
+Truncating sentence_3 from 201 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_3
+Truncating sentence_4 from 201 to 128 tokens
+  WARNING: Truncation removed some completion tokens for sentence_4
+Truncating sentence_0 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 160 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 160 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 160 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 160 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 160 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 182 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 176 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 176 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 176 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 176 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 176 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 200 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 201 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 205 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 139 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 156 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 156 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 156 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 156 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 156 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 132 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 142 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 142 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 142 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 142 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 158 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 175 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 141 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 145 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 146 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 146 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 146 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 146 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 172 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 177 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 177 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 177 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 177 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 177 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 185 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 185 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 185 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 185 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 185 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 152 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 152 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 152 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 152 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 152 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 165 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 169 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 169 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 169 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 169 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 169 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 192 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 202 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 195 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 199 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 179 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 180 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 189 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 171 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 171 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 171 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 171 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 171 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 163 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 178 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 178 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 178 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 178 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 178 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 186 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 193 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_0 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_1 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_2 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_3 from 173 to 128 tokens
+OK: All tokens are preserved
+Truncating sentence_4 from 173 to 128 tokens
+OK: All tokens are preserved
+1.0	41.78
+
+TEMPERATURE: 1.00
+
+### UID ACCURACY
+ambiref_0_ops: 26.69
+ambiref_1_ops: 45.63
+ambiref_2_ops: 43.05
+ambiref_3_ops: 44.54
+ambiref_4_ops: 40.16
+ambiref_5_ops: 48.13
+regular_0_ops: 28.71
+regular_1_ops: 42.83
+regular_2_ops: 48.84
+regular_3_ops: 40.43
+regular_4_ops: 44.37
+regular_5_ops: 49.69
+move_contents_0_ops: 25.62
+move_contents_1_ops: 41.75
+move_contents_2_ops: 46.94
+move_contents_3_ops: 44.72
+move_contents_4_ops: 44.99
+move_contents_5_ops: 44.87
+regular: 42.48
+ambiref: 41.37
+move_contents: 41.48
+
+### AVERAGE ACCURACY
+41.78
+

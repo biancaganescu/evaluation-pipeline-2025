@@ -1,0 +1,13 @@
+1.0	55.99
+
+TEMPERATURE: 1.00
+
+### UID ACCURACY
+base: 61.64
+wugs: 61.81
+wugs_dist_before: 46.86
+wugs_dist_in_between: 53.67
+
+### AVERAGE ACCURACY
+55.99
+

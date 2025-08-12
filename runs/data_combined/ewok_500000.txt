@@ -1,0 +1,39 @@
+1.0	51.78
+
+TEMPERATURE: 1.00
+
+### UID ACCURACY
+agent-properties: 50.18
+material-dynamics: 53.64
+material-properties: 49.41
+physical-dynamics: 53.33
+physical-interactions: 50.00
+physical-relations: 50.49
+quantitative-properties: 52.87
+social-interactions: 52.72
+social-properties: 50.61
+social-relations: 50.00
+spatial-relations: 56.33
+
+### CONTEXT_TYPE ACCURACY
+direct: 51.43
+indirect: 51.01
+
+### CONTEXT_CONTRAST ACCURACY
+antonym: 51.39
+negation: 49.47
+other: 50.41
+variable swap: 50.12
+game: 50.00
+material: 53.57
+variable_swap: 53.33
+number: 58.75
+active-passive: 50.00
+
+### TARGET_CONTRAST ACCURACY
+concept swap: 51.54
+variable swap: 50.56
+
+### AVERAGE ACCURACY
+51.78
+

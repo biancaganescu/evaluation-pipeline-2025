@@ -15,6 +15,15 @@ def get_p(sentence, word, model, tokenizer):  # gets p of word (word) given cont
     p = torch.softmax(logits[0], dim=-1)[target_id].item()
     return p
 
+def get_p_dst(sentence, word, model, tokenizer):  # gets p of word (word) given context. Relies on model and tokenizer.
+    inpts = tokenizer(sentence, return_tensors="pt").to(DEVICE)
+    with torch.no_grad():
+        outputs = model(input_ids=inpts["input_ids"], padding_mask=inpts["attention_mask"].eq(0))
+        logits = outputs[:, -1, :].cpu()
+    target_id = tokenizer(word, add_special_tokens=False)["input_ids"][0]
+    p = torch.softmax(logits[0], dim=-1)[target_id].item()
+    return p
+
 
 def get_p_mntp(sentence, word, model, tokenizer, num_mask_tokens=3):  # gets p of word (word) given context. Relies on model and tokenizer.
     inpts = tokenizer("".join([sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]), return_tensors="pt").to(DEVICE)
@@ -103,6 +112,30 @@ def get_p2(sentence, word, model, tokenizer):  # as get_p if len(tokenizer(word)
         p_multi = np.prod(out_p)
         return p_multi, 1
 
+def get_p2_dst(sentence, word, model, tokenizer):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
+    inpts = tokenizer(sentence, return_tensors="pt").to(DEVICE)
+    with torch.no_grad():
+        outputs = model(input_ids=inpts["input_ids"], padding_mask=inpts["attention_mask"].eq(0))
+        logits = outputs[:, -1, :].cpu()
+    target = tokenizer(word, add_special_tokens=False)["input_ids"]  # Check whether tokenizer adds a whitespace to the beginning of input.
+    if len(target) == 1:
+        target_id = target[0]
+        p = torch.softmax(logits[0], dim=-1)[target_id].item()
+        return p, 0
+    else:
+        out_p = []
+        target_id = target[0]
+        p = torch.softmax(logits[0], dim=-1)[target_id].item()
+        out_p.append(p)
+        sentence = sentence + tokenizer.decode(target_id)
+        for token in target[1:]:
+            t = tokenizer.decode(token)
+            p = get_p_dst(sentence, t, model, tokenizer)
+            out_p.append(p)
+            # print(sentence, "--"+t, p)
+            sentence = sentence + t
+        p_multi = np.prod(out_p)
+        return p_multi, 1
 
 def get_p2_mlm(sentence, word, model, tokenizer, num_mask_tokens=3):  # as get_p if len(tokenizer(word)) == 1; else, sums logP of subword tokens
     inpts = tokenizer("".join([sentence, "".join([tokenizer.mask_token for _ in range(num_mask_tokens)])]), return_tensors="pt").to(DEVICE)

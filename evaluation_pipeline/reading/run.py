@@ -1,5 +1,5 @@
 from transformers import AutoModelForCausalLM, AutoModelForMaskedLM, AutoTokenizer, AutoModelForSeq2SeqLM, AutoProcessor
-from evaluation_pipeline.reading.evaluation_functions import get_p2_mntp, get_p2, get_p2_mlm, get_p2_enc_dec
+from evaluation_pipeline.reading.evaluation_functions import get_p2_mntp, get_p2, get_p2_mlm, get_p2_enc_dec, get_p2_dst
 from tqdm import tqdm
 import pandas as pd
 import argparse
@@ -9,7 +9,12 @@ from functools import partial
 import math
 import json
 import torch
+import sys
+from tokenizers.processors import TemplateProcessing
 
+
+sys.path.append("/home/bmg44/dual-stream-transformer")
+from models.model_gate_soft_per_token import DualStreamTransformer
 DEVICE = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 
@@ -78,8 +83,10 @@ if __name__ == "__main__":
     model.to(DEVICE)
     model.eval()
 
-    if args.backend == "causal" or args.backend == "dst":
+    if args.backend == "causal":
         p2_function = get_p2
+    elif args.backend == "dst":
+        p2_function = get_p2_dst
     elif args.backend == "mlm":
         p2_function = partial(get_p2_mlm, num_mask_tokens=args.number_of_mask_tokens_to_append)
     elif args.backend == "mntp":

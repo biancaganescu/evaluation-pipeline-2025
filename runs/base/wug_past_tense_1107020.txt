@@ -1,0 +1,10 @@
+1.0	-0.11
+
+TEMPERATURE: 1.00
+
+### UID ACCURACY
+avg: -0.11
+
+### AVERAGE ACCURACY
+-0.11
+
